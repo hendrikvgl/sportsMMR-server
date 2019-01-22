@@ -10,7 +10,7 @@ Frontend repo: https://github.com/hendrikvgl/sportsMMR-client
 Node.js
 
 ```
-npm i -S mongoose express body-parser morgan
+npm i -S mongoose express body-parser morgan cors
 ```
 
 ## Commands:

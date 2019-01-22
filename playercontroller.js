@@ -15,7 +15,8 @@ module.exports = {
         //do something
     },
     postPlayer: function (req, res) {
-        let data = new Data();
+         console.log("boingflip");
+        let player = new Player();
 
         const {id, name} = req.body;
 
@@ -25,9 +26,9 @@ module.exports = {
                 error: "INVALID INPUTS"
             });
         }
-        data.name = name;
-        data.id = id;
-        data.save(err => {
+        player.name = name;
+        player.id = id;
+        player.save(err => {
             if (err)
                 return res.json({success: false, error: err});
             return res.json({success: true});
