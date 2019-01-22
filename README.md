@@ -1,4 +1,4 @@
-### sportsMMR-server
+# sportsMMR-server
 
 Node.js backend controller for sportsMMR React app.
 Currently set up with local mongoDB test environment.
@@ -20,9 +20,9 @@ node server.js
 
 ## Modules:
 
-# server.js
+### server.js
 - implements operations regarding the persistence layer.
 - defines database parameters (needs refactoring into separate config file)
 
-# data.js
+### data.js
 - defines data models
