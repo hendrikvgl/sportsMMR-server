@@ -5,7 +5,7 @@ Currently set up with local mongoDB test environment.
 
 Frontend repo: https://github.com/hendrikvgl/sportsMMR-client
 
-##Dependencies:
+## Dependencies:
 
 Node.js
 
@@ -13,16 +13,16 @@ Node.js
 npm i -S mongoose express body-parser morgan
 ```
 
-##Commands:
+## Commands:
 ```
 node server.js
 ```
 
-##Modules:
+## Modules:
 
-#server.js
+# server.js
 - implements operations regarding the persistence layer.
 - defines database parameters (needs refactoring into separate config file)
 
-#data.js
+# data.js
 - defines data models
