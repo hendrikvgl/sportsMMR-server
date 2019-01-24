@@ -1,5 +1,6 @@
 const Player = require("./playermodel");
 const server = require("./server");
+const {ObjectId} = require('mongodb');
 
 const router = server.router;
 
@@ -16,10 +17,8 @@ module.exports = {
     },
     postPlayer: function (req, res) {
         let player = new Player();
-
-        const { name} = req.body;
-
-        if ( !name) {
+        const {name} = req.body;
+        if (!name) {
             return res.json({
                 success: false,
                 error: "INVALID INPUTS"
@@ -29,6 +28,15 @@ module.exports = {
         player.save(err => {
             if (err)
                 return res.json({success: false, error: err});
+            return res.json({success: true});
+        });
+    },
+    deletePlayer: function (req, res) {
+        const {id} = req.body;
+        
+        Player.findOneAndDelete({ _id: id }, err => {
+            if (err)
+                return res.send(err);
             return res.json({success: true});
         });
     }
