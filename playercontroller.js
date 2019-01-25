@@ -32,9 +32,9 @@ module.exports = {
         });
     },
     deletePlayer: function (req, res) {
-        const {id} = req.body;
-        
-        Player.findOneAndDelete({ _id: id }, err => {
+        const {_id} = req.body;
+        console.log(_id);
+        Player.findOneAndDelete({ _id: _id }, err => {
             if (err)
                 return res.send(err);
             return res.json({success: true});
