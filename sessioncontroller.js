@@ -5,10 +5,10 @@ const router = server.router;
 
 module.exports = {
     findActiveSession: function (req, res) {
-        Session.findOne({ isActive: true }, err => {
+        Session.findOne({ isActive: true }, (err, data) => {
             if (err)
                 return res.send(err);
-            return res.json({success: true});
+            return res.json({success: true, data: data});
         });
     },
     postSession: function (req, res) {
