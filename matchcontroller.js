@@ -1,4 +1,4 @@
-const Player = require("./matchmodel");
+const Match = require("./matchmodel");
 const server = require("./server");
 const {ObjectId} = require('mongodb');
 
