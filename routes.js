@@ -13,7 +13,7 @@ router.route('/session').post(sessioncontroller.postSession);
 router.route('/session').put(sessioncontroller.endSession);
 
 router.route('/activematch').get(matchcontroller.findActiveMatch);
-router.route('/match').get(matchcontroller.getMatchesForId);
+router.route('/matches').post(matchcontroller.getMatchesForId);
 router.route('/match').post(matchcontroller.postMatch);
 router.route('/match').put(matchcontroller.endMatch);
 

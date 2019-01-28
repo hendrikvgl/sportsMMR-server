@@ -14,6 +14,7 @@ module.exports = {
     },
     getMatchesForId: function (req, res) {
         const {sessionId} = req.body;
+        console.log(sessionId);
         Match.find({ sessionId: sessionId},(err, data) => {
             if (err)
                 return res.json({success: false, error: err});
