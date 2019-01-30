@@ -11,6 +11,13 @@ module.exports = {
             return res.json({success: true, data: data});
         });
     },
+    findAllSessions: function (req, res) {
+        Session.find( (err, data) => {
+            if (err)
+                return res.send(err);
+            return res.json({success: true, data: data});
+        });
+    },
     postSession: function (req, res) {
         let session = new Session();
         const {players} = req.body;

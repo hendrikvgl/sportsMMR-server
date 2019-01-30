@@ -11,6 +11,7 @@ router.route('/player').delete(playercontroller.deletePlayer);
 router.route('/session').get(sessioncontroller.findActiveSession);
 router.route('/session').post(sessioncontroller.postSession);
 router.route('/session').put(sessioncontroller.endSession);
+router.route('/sessions').get(sessioncontroller.findAllSessions);
 
 router.route('/activematch').get(matchcontroller.findActiveMatch);
 router.route('/matches').post(matchcontroller.getMatchesForId);
