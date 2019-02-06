@@ -6,7 +6,7 @@ const router = server.router;
 
 module.exports = {
     findActiveMatch: function (req, res) {
-        Match.findOne({ isActive: true }, (err, data) => {
+        Match.findOne({isActive: true}, (err, data) => {
             if (err)
                 return res.send(err);
             return res.json({success: true, data: data});
@@ -15,7 +15,7 @@ module.exports = {
     getMatchesForId: function (req, res) {
         const {sessionId} = req.body;
         console.log(sessionId);
-        Match.find({ sessionId: sessionId},(err, data) => {
+        Match.find({sessionId: sessionId}, (err, data) => {
             if (err)
                 return res.json({success: false, error: err});
             return res.json({success: true, data: data});
@@ -36,22 +36,27 @@ module.exports = {
         match.teamOne = teamOne;
         match.teamTwo = teamTwo;
         match.sessionId = sessionId;
-        
+
         match.save(err => {
             if (err)
                 return res.json({success: false, error: err});
             return res.json({success: true});
         });
     },
-    endMatch: function(req,res) {
+    endMatch: function (req, res) {
         const {_id} = req.body;
         const {results} = req.body;
         const {winners} = req.body;
 
-        Match.findOneAndUpdate({ _id: _id },{isActive: false, results: results, winners: winners} ,err => {
-            if (err)
+        Match.findOneAndUpdate({_id: _id}, {isActive: false, results: results, winners: winners},{new: true}, (err, doc) => {
+            if (err) {
                 return res.send(err);
+            }
+            doc.toObject({ getters: true });
+            doc.processMatch();
             return res.json({success: true});
         });
+
+
     }
 }

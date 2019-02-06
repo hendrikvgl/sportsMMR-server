@@ -14,7 +14,9 @@ npm i -S mongoose express body-parser morgan cors
 ```
 
 ## Commands:
+
 ```
+pm2 restart server (prod after pull)
 node server.js
 ```
 

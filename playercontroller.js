@@ -25,6 +25,7 @@ module.exports = {
             });
         }
         player.name = name;
+        player.mmr = 1000;
         player.save(err => {
             if (err)
                 return res.json({success: false, error: err});
