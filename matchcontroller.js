@@ -1,8 +1,15 @@
 const Match = require("./matchmodel");
+const Player = require("./playermodel");
 const server = require("./server");
 const {ObjectId} = require('mongodb');
 
 const router = server.router;
+
+let teamOneMMR;
+let teamTwoMMR;
+let teamOneLoad = -1;
+let teamTwoLoad = -1;
+let responded = false;
 
 module.exports = {
     findActiveMatch: function (req, res) {
@@ -48,15 +55,76 @@ module.exports = {
         const {results} = req.body;
         const {winners} = req.body;
 
-        Match.findOneAndUpdate({_id: _id}, {isActive: false, results: results, winners: winners},{new: true}, (err, doc) => {
+        Match.findOneAndUpdate({_id: _id}, {isActive: false, results: results, winners: winners}, {new : true}, (err, doc) => {
             if (err) {
                 return res.send(err);
             }
-            doc.toObject({ getters: true });
+            doc.toObject({getters: true});
             doc.processMatch();
             return res.json({success: true});
         });
+    },
+    getTMMR: function (req, res) {
+        const {teamOne} = req.body;
+        const {teamTwo} = req.body;
+
+        teamOneMMR = 0;
+        teamTwoMMR = 0;
+        teamOneLoad = teamOne.length;
+        teamTwoLoad = teamTwo.length;
+        responded = false;
 
 
+        for (var i = 0; i < teamOne.length; i++) {
+            const id = teamOne[i].id;
+
+            Player.findOne({_id: id}, (err, doc) => {
+                if (err) {
+
+                } else {
+//                doc.toObject({getters: true});
+                    teamOneMMR = teamOneMMR + doc.mmr;
+                    teamOneLoad = teamOneLoad - 1;
+                    
+                    let response = processTMMR();
+                    if(response !== null && !responded) {
+                        responded = true;
+                        return res.json(response);
+                    }
+                }
+            });
+
+        }
+
+        for (var i = 0; i < teamTwo.length; i++) {
+            const id = teamTwo[i].id;
+
+            Player.findOne({_id: id}, (err, doc) => {
+                if (err) {
+
+                } else {
+                    teamTwoMMR = teamTwoMMR + doc.mmr;
+                    teamTwoLoad = teamTwoLoad - 1;
+                    
+                    let response = processTMMR();
+                    if(response !== null && !responded) {
+                        responded = true;
+                        return res.json(response);
+                    }
+                }
+            });
+
+        }
+
+    }
+
+}
+function processTMMR() {
+    console.log("outer" + teamOneMMR + "#" + teamTwoMMR);
+    if(teamOneLoad === 0 && teamTwoLoad === 0) {
+        console.log("inner");
+        return {success: true, teamOneMMR: teamOneMMR, teamTwoMMR: teamTwoMMR};
+    } else {
+        return null;
     }
 }

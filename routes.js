@@ -17,5 +17,6 @@ router.route('/activematch').get(matchcontroller.findActiveMatch);
 router.route('/matches').post(matchcontroller.getMatchesForId);
 router.route('/match').post(matchcontroller.postMatch);
 router.route('/match').put(matchcontroller.endMatch);
+router.route('/match/tmmr').post(matchcontroller.getTMMR);
 
 module.exports = router;
