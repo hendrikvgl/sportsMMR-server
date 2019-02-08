@@ -4,6 +4,9 @@ const {ObjectId} = require('mongodb');
 
 const router = server.router;
 
+let playerLoad = -1;
+let playerMMR = [];
+
 module.exports = {
     getPlayers: function (req, res) {
         Player.find((err, data) => {
@@ -35,10 +38,44 @@ module.exports = {
     deletePlayer: function (req, res) {
         const {_id} = req.body;
         console.log(_id);
-        Player.findOneAndDelete({ _id: _id }, err => {
+        Player.findOneAndDelete({_id: _id}, err => {
             if (err)
                 return res.send(err);
             return res.json({success: true});
         });
+    },
+    getPlayersMMR: function (req, res) {
+
+        const players = req.body.data.players;
+        playerLoad = players.length;
+        playerMMR = [];
+
+        for (var i = 0; i < players.length; i++) {
+            const id = players[i].id;
+
+            Player.findOne({_id: id}, (err,doc) => {
+                if (err) {
+                    
+                }
+                    
+                playerLoad = playerLoad -1;
+                let response = processPlayersMMR({id: doc.id, label: doc.name, mmr: doc.mmr});
+                
+                if (response !== null) {
+                    return res.json(response);
+                }
+            });
+
+        }
     }
+}
+
+function processPlayersMMR(obj) {
+    playerMMR.push(obj);
+    if(playerLoad === 0) {
+        return ({success: true, data: playerMMR});
+    } else {
+        return null;
+    }
+    
 }
