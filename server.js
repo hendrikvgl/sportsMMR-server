@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 const logger = require("morgan");
 var cors = require('cors');
 
@@ -16,8 +17,8 @@ exports.router = router;
 
 // connects our back end code with the database
 mongoose.connect(
-  dbRoute,
-  { useNewUrlParser: true }
+        dbRoute,
+        {useNewUrlParser: true}
 );
 
 let db = mongoose.connection;
@@ -30,11 +31,28 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // (optional) only made for logging and
 // bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.set('trust proxy', 1);
+
+app.use(cookieParser());
 
 app.use(logger("dev"));
-app.use(cors());
+
+var whitelist = ['http://127.0.0.1:3000', 'http://charlesmedia.stream:480/'];
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 var routes = require('./routes');
 // append /api for our http requests

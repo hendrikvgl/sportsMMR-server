@@ -7,6 +7,14 @@ Frontend repo: https://github.com/hendrikvgl/sportsMMR-client
 
 ## Dependencies:
 
+config.js file with sensible data in root dir (not included in this repo)
+
+```
+auth: {
+   secret: 'hidden'
+ }
+```
+
 Node.js
 
 ```

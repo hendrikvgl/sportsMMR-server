@@ -46,7 +46,7 @@ module.exports = {
     },
     getPlayersMMR: function (req, res) {
 
-        const players = req.body.data.players;
+        const players = req.body.players;
         playerLoad = players.length;
         playerMMR = [];
 
