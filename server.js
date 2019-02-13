@@ -52,7 +52,7 @@ var corsOptions = {
   credentials: true
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 var routes = require('./routes');
 // append /api for our http requests
