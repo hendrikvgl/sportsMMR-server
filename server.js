@@ -39,7 +39,7 @@ app.use(cookieParser());
 
 app.use(logger("dev"));
 
-var whitelist = ['http://charlesmedia.stream:480', 'charlesmedia.stream:480'];
+var whitelist = ['http://127.0.0.1:3000', 'http://charlesmedia.stream:480', 'charlesmedia.stream:480'];
 
 var corsOptions = {
   origin: function (origin, callback) {
