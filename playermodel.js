@@ -7,7 +7,8 @@ const DataSchema = new Schema(
             name: String,
             mmr: Number,
             mmrSequence: [],
-            mmrSequenceMatch: []
+            mmrSequenceMatch: [],
+            crewId: String
         },
         {timestamps: true}
 );

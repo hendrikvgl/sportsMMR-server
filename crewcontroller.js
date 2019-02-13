@@ -2,9 +2,9 @@ const Crew = require("./crewmodel");
 const server = require("./server");
 const config = require('./config');
 const {auth: {secret}} = config;
-
-const router = server.router;
 const jwt = require('jsonwebtoken');
+const router = server.router;
+
 
 
 module.exports = {

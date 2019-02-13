@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema(
         {
             isActive: Boolean,
-            players: []
+            players: [],
+            crewId: String
         },
         {timestamps: true}
 );
