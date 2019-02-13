@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
-const saltRounds = 10;
-
+const salt = bcrypt.genSaltSync(10);
 // this will be our data base's data structure 
 const DataSchema = new Schema(
         {
@@ -34,7 +33,7 @@ DataSchema.pre('save', function (next) {
     if (this.isNew || this.isModified('adminPassword')) {
 
         const document = this;
-        bcrypt.hash(document.adminPassword, saltRounds,
+        bcrypt.hash(document.adminPassword, salt, null,
                 function (err, hashedPassword) {
                     if (err) {
                         next(err);
@@ -53,7 +52,7 @@ DataSchema.pre('save', function (next) {
     if (this.isNew || this.isModified('password')) {
         // Saving reference to this because of changing scopes
         const document = this;
-        bcrypt.hash(document.password, saltRounds,
+        bcrypt.hash(document.password, salt, null,
                 function (err, hashedPassword) {
                     if (err) {
                         next(err);

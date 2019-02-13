@@ -10,9 +10,13 @@ Frontend repo: https://github.com/hendrikvgl/sportsMMR-client
 config.js file with sensible data in root dir (not included in this repo)
 
 ```
-auth: {
-   secret: 'hidden'
+const config = {
+ auth: {
+   secret: 'pssst'
  }
+};
+
+module.exports = config;
 ```
 
 Node.js

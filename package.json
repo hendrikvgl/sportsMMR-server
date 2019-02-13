@@ -1,0 +1,30 @@
+{
+  "name": "sportsmmr-server",
+  "version": "1.0.0",
+  "description": "Node.js backend controller for sportsMMR React app. Currently set up with local mongoDB test environment.",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.11",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hendrikvgl/sportsMMR-server.git"
+  },
+  "author": "hendrikvgl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hendrikvgl/sportsMMR-server/issues"
+  },
+  "homepage": "https://github.com/hendrikvgl/sportsMMR-server#readme"
+}
