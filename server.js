@@ -39,20 +39,20 @@ app.use(cookieParser());
 
 app.use(logger("dev"));
 
-var whitelist = ['http://127.0.0.1:3000', 'http://charlesmedia.stream:480', 'charlesmedia.stream:480'];
+//var whitelist = ['http://127.0.0.1:3000', 'http://charlesmedia.stream:480', 'charlesmedia.stream:480'];
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-};
-
-app.use(cors(corsOptions));
+//var corsOptions = {
+//  origin: function (origin, callback) {
+//    if (whitelist.indexOf(origin) !== -1) {
+//      callback(null, true);
+//    } else {
+//      callback(new Error('Not allowed by CORS'));
+//    }
+//  },
+//  credentials: true
+//};
+//
+//app.use(cors(corsOptions));
 
 var routes = require('./routes');
 // append /api for our http requests
