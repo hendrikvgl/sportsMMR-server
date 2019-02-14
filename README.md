@@ -21,9 +21,7 @@ module.exports = config;
 
 Node.js
 
-```
-npm i -S mongoose express body-parser morgan cors
-```
+Everything else included in package.json
 
 ## Commands:
 
@@ -32,11 +30,3 @@ pm2 restart server (prod after pull)
 node server.js
 ```
 
-## Modules:
-
-### server.js
-- implements operations regarding the persistence layer.
-- defines database parameters (needs refactoring into separate config file)
-
-### data.js
-- defines data models
