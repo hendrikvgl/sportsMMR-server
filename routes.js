@@ -18,7 +18,7 @@ router.route('/session').post(withAuth, sessioncontroller.postSession);
 router.route('/session').put(withAuth, sessioncontroller.endSession);
 router.route('/sessions').get(withAuth, sessioncontroller.findAllSessions);
 
-router.route('/activematch').get(withAuth, matchcontroller.findActiveMatch);
+router.route('/activematch').post(withAuth, matchcontroller.findActiveMatch);
 router.route('/matches').post(withAuth, matchcontroller.getMatchesForId);
 router.route('/match').post(withAuth, matchcontroller.postMatch);
 router.route('/match').put(withAuth, matchcontroller.endMatch);

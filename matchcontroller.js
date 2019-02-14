@@ -13,7 +13,9 @@ let responded = false;
 
 module.exports = {
     findActiveMatch: function (req, res) {
-        Match.findOne({isActive: true}, (err, data) => {
+        
+        const {sessionId} = req.body;
+        Match.findOne({isActive: true, sessionId: sessionId}, (err, data) => {
             if (err)
                 return res.send(err);
             return res.json({success: true, data: data});
