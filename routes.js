@@ -23,6 +23,7 @@ router.route('/matches').post(withAuth, matchcontroller.getMatchesForId);
 router.route('/match').post(withAuth, matchcontroller.postMatch);
 router.route('/match').put(withAuth, matchcontroller.endMatch);
 router.route('/match/tmmr').post(withAuth, matchcontroller.getTMMR);
+router.route('/match/mostrecent').post(withAuth, matchcontroller.getMostRecentForId);
 
 router.route('/crew').post(crewcontroller.postCrew);
 router.route('/auth').post(crewcontroller.authenticate);

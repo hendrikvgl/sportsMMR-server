@@ -118,6 +118,15 @@ module.exports = {
 
         }
 
+    },
+    getMostRecentForId: function (req, res) {
+        const {sessionId} = req.body;
+
+        Match.find({sessionId: sessionId}, (err, data) => {
+            if (err)
+                return res.json({success: false, error: err});
+            return res.json({success: true, data: data[data.length-1]});
+        });
     }
 
 }
